@@ -1,0 +1,50 @@
+.container{
+  display: flex;
+  margin: 20px;
+  align-items: center;
+}
+
+
+.post {
+  margin: 20px ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.borrarBtn{
+  padding: 5px 10px;
+  background-color: rgba(220, 20, 60, 0.593);
+  color: var(--textColor);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.adoptadaBtn{
+  padding: 5px 10px;
+  background-color: rgba(33, 237, 19, 0.593);
+  color: var(--textColor);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.editarBtn{
+  padding: 5px 10px;
+  background-color: rgba(54, 140, 239, 0.593);
+  color: var(--textColor);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}

@@ -1,0 +1,89 @@
+.wrapper {
+    width: 100%;
+    padding-top: 60px;
+    min-height: 100vh;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  
+  .requirementsHeadlines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  
+  .mainTitle {
+    font-size: 3rem; /* Equivalent to text-6xl */
+    font-weight: 900; /* Equivalent to font-black */
+    margin-bottom: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem; /* Equivalent to text-2xl */
+    font-weight: 600; /* Equivalent to font-semibold */
+    margin-bottom: 3rem;
+  }
+  
+  .rItemContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  
+  .rItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center; /* Center each item horizontally */
+    margin-bottom: 1rem;
+    text-align: left; /* Align text to the left */
+  }
+  
+  .rLogo {
+    width: 4rem; /* Equivalent to w-12 */
+    height: 4rem; /* Equivalent to h-12 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Equivalent to rounded-full */
+    flex-shrink: 0; /* Prevent the logo from shrinking */
+  }
+  
+  .itemText {
+    font-size: 1.5rem; /* Equivalent to text-2xl */
+    font-weight: 600; /* Equivalent to font-semibold */
+  }
+  
+  .corgiImage {
+    display: none; /* Hidden on small screens */
+  }
+  
+  @media (min-width: 768px) {
+    .corgiImage {
+      display: block; /* Visible on medium and large screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .mainTitle {
+      font-size: 2rem; /* Smaller font size on small screens */
+    }
+  
+    .subtitle {
+      font-size: 1rem; /* Smaller font size on small screens */
+    }
+  
+    .itemText {
+      font-size: 1rem; /* Smaller font size on small screens */
+    }
+  }
+  

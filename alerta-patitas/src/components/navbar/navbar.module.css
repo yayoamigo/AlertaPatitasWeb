@@ -1,0 +1,108 @@
+
+
+.container {
+  z-index:100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black);
+  background-color: white;
+  padding: 30px 50px;
+  transition: all 0.4s ease-out;
+  filter: drop-shadow(5px 5px 10px #368fbf);
+  height: 100px;
+}
+
+.container.sticky {
+  background-color: white;
+}
+
+
+.imgContainer{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+  height: 120px;
+}
+.brand {
+  text-decoration: none;
+  transition: all ease-in-out 0.3s;
+  color: var(--black);
+  margin-bottom: -20px;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+}
+
+.menu a {
+  display: inline-block;
+  position: relative;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 32px;
+  background-color: white;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+}
+
+.menu a:hover {
+  background-color: var(--accent);
+  color: rgb(255, 255, 255);
+}
+
+.btn {
+  color: var(--black);
+  font-size: 25px;
+  cursor: pointer;
+  display: none;
+}
+
+.btn2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--black);
+  transition: all ease-in-out 0.2s;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn2 i {
+  font-size: 32px;
+  transition: all 0.2s ease-out;
+}
+
+.btn2:hover i {
+  color: var(--accent);
+}
+
+.btn2:hover {
+  gap: 10px;
+}
+
+.active {
+  display: block !important;
+}

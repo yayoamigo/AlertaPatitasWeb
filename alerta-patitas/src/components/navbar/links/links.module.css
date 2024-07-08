@@ -1,0 +1,40 @@
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+}
+
+.menuLinks {
+  display: inline-block;
+  position: relative;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 0;
+  background-color: white;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+}
+
+.menuLinks:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+.logout {
+  margin-top: 50px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 24px;
+  color: aliceblue;
+  background-color: #3c348c;
+}
+

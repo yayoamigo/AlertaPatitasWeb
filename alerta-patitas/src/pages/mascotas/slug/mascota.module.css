@@ -1,0 +1,104 @@
+.wrapper {
+  width: 100%;
+  padding-top: 60px;
+  min-height: 100vh;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  gap: 50px;
+  min-height: 90vh;
+  padding: 20px;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgContainer {
+  flex: 1;
+  position: relative;
+  height: 500px
+}
+
+.img {
+  object-fit: cover;
+  border: 5px solid #e0e0e0; /* Light gray border */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.textContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.detail {
+  gap: 20px;
+}
+
+.detailText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailTitle {
+  color: gray;
+  font-weight: bold;
+}
+
+.detailValue {
+  font-weight: 500;
+}
+
+.content {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.infoSection {
+  margin-bottom: 20px;
+}
+
+.infoSection h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.infoList, .personalityList, .healthList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.infoList li, .personalityItem, .healthItem {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.personalityItem, .healthItem {
+  background-color: #e0f7fa;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .imgContainer {
+    display: none;
+  }
+}

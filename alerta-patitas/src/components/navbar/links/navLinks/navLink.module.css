@@ -1,0 +1,22 @@
+.container {
+  display: inline-block;
+  position: relative;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 32px;
+  background-color: white;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+}
+
+.container:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.active {
+  background-color: var(--accent);
+  color: white;
+}
