@@ -30,6 +30,19 @@
   color: var(--bgSoft)
 }
 
+.aviso{
+  width: 100%;
+  padding-top: 60px;
+  min-height: 100vh;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
