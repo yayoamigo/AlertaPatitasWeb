@@ -8,7 +8,7 @@ const ContactPage = () => {
   return (
     <div className={styles.wrapper}>
     <div className={styles.container}>
-    <h1 className="text-5xl font-bold text-black rounded-xl p-10">contactanos y te daremos un usuario de forma gratuita</h1>
+    <h1 className="text-2xl sm:text-5xl font-bold text-cyan-700 rounded-xl p-10 bg-white opacity-6"> Escribenos y creamos tu cuenta</h1>
       <div className={styles.formContainer}>
         <form action="" className={styles.form}>
           <input className={styles.inputs} type="text" placeholder="Nombre del refugio" />

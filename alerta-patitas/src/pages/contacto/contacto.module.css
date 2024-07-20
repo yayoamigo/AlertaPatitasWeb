@@ -36,7 +36,7 @@
   }
   
   .formContainer {
-    width: 70%;
+    min-width: 70%;
     margin: 0 auto;
     padding: 20px;
     background-color: #96e8ec;
@@ -70,7 +70,7 @@
   
   .form button {
     padding: 15px;
-    background-color: #cd30c8;
+    background-color: #5dd4c0;
     color: #fff;
     font-weight: bold;
     border: none;
