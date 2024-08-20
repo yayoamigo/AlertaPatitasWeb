@@ -15,8 +15,7 @@ const AdminPosts =() => {
             />
             <span className={styles.postTitle}>Perro</span>
           </div>
-          <form >
-            <input type="hidden" name="id" value="2" />
+          <form className={styles.formBtns}>
             <button className={styles.borrarBtn}>Borrar</button>
             <button className={styles.adoptadaBtn}>Adoptada</button>
             <button className={styles.editarBtn}>Editar</button>
