@@ -9,10 +9,10 @@
 .container textarea,
 .container select {
   padding: 20px;
-  background-color: var(--bgSoft);
-  border: none;
+  background-color: rgb(141, 201, 216);
   border-radius: 5px;
-  color: var(--textColor);
+  color: black;
+  font-weight: 700;
 }
 
 .container button {
@@ -21,6 +21,37 @@
   background-color: var(--btn);
   border: none;
   border-radius: 5px;
-  color: var(--textColor);
+  color: white;
   font-weight: bold;
+}
+
+.previewContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.preview {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  border-radius: 0;
+}
+
+.removeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0 5px;
+  line-height: 20px;
+}
+
+.removeButton:hover {
+  background: rgb(236, 49, 49);
 }
