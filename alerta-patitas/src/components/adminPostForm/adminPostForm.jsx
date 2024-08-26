@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { postPets } from '../../redux/adminPets';
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from "../../utils/firebase";
+import { fetchPets } from '../../redux/adminPets';
 
 const AdminPostForm = ({ pet = {} }) => {
   const [formData, setFormData] = useState({
@@ -96,6 +97,9 @@ const AdminPostForm = ({ pet = {} }) => {
             const updatedFormData = { ...formData, photo: downloadURL };
             await dispatch(postPets(updatedFormData)).unwrap();
             alert('Form submitted successfully!');
+
+            dispatch(fetchPets());
+
 
             // Reset form data and file input
             setFormData({

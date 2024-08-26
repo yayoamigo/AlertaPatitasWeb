@@ -10,8 +10,14 @@ const initialState = {
 
 
 export const fetchPets = createAsyncThunk('adoptionPets/fetchPets', async () => {
-    const response = await fetch(publicRequestAdoptionPets);
-    return response.data;
+    const response = await publicRequestAdoptionPets.get('/');
+    const data = response.data;
+    const petsArray = Object.keys(data).map(key => ({
+        id: key,
+        ...data[key]
+      }));
+    
+      return petsArray;
 });
 
 
