@@ -10,6 +10,7 @@ const initialState = {
 
 
 export const fetchPets = createAsyncThunk('adoptionPets/fetchPets', async () => {
+    try {
     const response = await publicRequestAdoptionPets.get('/');
     const data = response.data;
     const petsArray = Object.keys(data).map(key => ({
@@ -18,6 +19,10 @@ export const fetchPets = createAsyncThunk('adoptionPets/fetchPets', async () => 
       }));
     
       return petsArray;
+    }
+    catch (error) {
+        console.log(error);
+    }
 });
 
 
@@ -27,8 +32,13 @@ export const fetchPetsbyShelter = createAsyncThunk('adoptionPets/fetchPetsbyShel
 });
 
 export const postPets = createAsyncThunk('adoptionPets/postPets', async (pet) => {
+    try{
     const response = await publicRequestAdoptionPets.post('', pet);
     return response.data;
+    }
+    catch (error) {
+        console.log(error);
+    }
 });
 
 const adoptionPetsSlice = createSlice({

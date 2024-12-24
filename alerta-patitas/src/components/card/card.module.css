@@ -9,11 +9,11 @@
     z-index: 1;
     border-radius: 22px;
     padding: 1rem;
-    padding-top: 0; /* Adjust padding for the top */
+    padding-top: 0; 
     background-color: white;
-    background-clip: padding-box; /* Important for the gradient border */
+    background-clip: padding-box; 
     color: black;
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transition for transform */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; 
     cursor: pointer;
   }
   
@@ -25,22 +25,23 @@
     right: -5px;
     bottom: -5px;
     z-index: -1;
-    background: linear-gradient(135deg, #4dc2cd, #39a699 71%, #92c9ed);
-    border-radius: 27px; /* Adjust for the thickness of the border */
-    pointer-events: none; /* Allows interaction with the card content */
-    transition: opacity 0.3s ease-in-out; /* Add transition for opacity */
+    background: linear-gradient(135deg, #aec2f8, #baece7 71%, #92c9ed);
+    border-radius: 27px; 
+    pointer-events: none; 
+    transition: opacity 0.3s ease-in-out; 
   }
   
   .card:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05); /* Add scaling effect on hover */
+    transform: scale(1.05); 
   }
   
   .card:hover::before {
-    opacity: 0.9; /* Slightly change opacity on hover for a subtle effect */
+    opacity: 0.9; 
   }
   
   .card img {
     border-radius: 22px;
+    height: 250px;
   }
   
