@@ -1,4 +1,98 @@
+/* Block: navbar */
+.navbar {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  padding: 0 50px;
+  transition: all 0.4s ease-out;
+  filter: drop-shadow(5px 5px 10px #368fbf);
+  display: flex;
+  align-items: center;
+}
 
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black);
+  width: 100%;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: auto;
+}
+
+.navbar__logo {
+  text-decoration: none;
+  transition: all ease-in-out 0.3s;
+  color: var(--black);
+  width: 80px;
+  height: 80px;
+}
+
+.navbar__logo:hover {
+  opacity: 0.8;
+}
+
+.navbar__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+}
+
+.navbar__link {
+  display: inline-block;
+  position: relative;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 32px;
+  background-color: white;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+}
+
+.navbar__link:hover {
+  background-color: var(--accent);
+  color: rgb(255, 255, 255);
+}
+
+.navbar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--black);
+  transition: all ease-in-out 0.2s;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__button:hover {
+  gap: 10px;
+}
+
+.navbar__button-text {
+  font-size: 24px;
+  font-weight: 400;
+  color: inherit;
+}
+
+.navbar--sticky {
+  background-color: white;
+}
 
 .container {
   z-index:100;
@@ -105,4 +199,10 @@
 
 .active {
   display: block !important;
+}
+
+.linkText {
+  font-size: 24px;
+  font-weight: 400;
+  color: inherit;
 }

@@ -5,24 +5,17 @@ import { publicRequestAdoptionPets } from '../../utils/requestsMethods';
 const initialState = {
     pets: [] ,
     isFetching: false,
-    error: false,
+    error: null,
 };
 
 
 export const fetchPets = createAsyncThunk('adoptionPets/fetchPets', async () => {
-    try {
-    const response = await publicRequestAdoptionPets.get('/');
+    const response = await publicRequestAdoptionPets.get('.json');
     const data = response.data;
-    const petsArray = Object.keys(data).map(key => ({
-        id: key,
-        ...data[key]
-      }));
-    
-      return petsArray;
-    }
-    catch (error) {
-        console.log(error);
-    }
+    // Convert Firebase object to array and filter out null values
+    return data ? Object.entries(data)
+      .map(([id, pet]) => ({ ...pet, id }))
+      .filter(pet => pet !== null) : [];
 });
 
 
@@ -32,12 +25,29 @@ export const fetchPetsbyShelter = createAsyncThunk('adoptionPets/fetchPetsbyShel
 });
 
 export const postPets = createAsyncThunk('adoptionPets/postPets', async (pet) => {
-    try{
-    const response = await publicRequestAdoptionPets.post('', pet);
-    return response.data;
-    }
-    catch (error) {
-        console.log(error);
+    const response = await publicRequestAdoptionPets.post('.json', pet);
+    return { ...pet, id: response.data.name };
+});
+
+export const deletePet = createAsyncThunk('adoptionPets/deletePet', async (id) => {
+    await publicRequestAdoptionPets.delete(`/${id}.json`);
+    return id;
+});
+
+export const updatePetStatus = createAsyncThunk('adoptionPets/updateStatus', async (id) => {
+    const response = await publicRequestAdoptionPets.patch(`/${id}.json`, {
+        status: 'Adoptado'
+    });
+    return { id, status: response.data.status };
+});
+
+export const updatePet = createAsyncThunk('adoptionPets/updatePet', async ({petId, updatedData}) => {
+    try {
+        await publicRequestAdoptionPets.put(`/${petId}.json`, updatedData);
+        return { petId, updatedData };
+    } catch (error) {
+        console.error(error);
+        throw error;
     }
 });
 
@@ -52,15 +62,15 @@ const adoptionPetsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchPets.pending, (state) => {
             state.isFetching = true;
-            state.error = false;
         });
         builder.addCase(fetchPets.fulfilled, (state, action) => {
             state.isFetching = false;
             state.pets = action.payload;
+            state.error = null;
         });
-        builder.addCase(fetchPets.rejected, (state) => {
+        builder.addCase(fetchPets.rejected, (state, action) => {
             state.isFetching = false;
-            state.error = true;
+            state.error = action.error.message;
         });
         builder.addCase(fetchPetsbyShelter.pending, (state) => {
             state.isFetching = true;
@@ -83,6 +93,46 @@ const adoptionPetsSlice = createSlice({
             state.pets.push(action.payload);
         });
         builder.addCase(postPets.rejected, (state) => {
+            state.isFetching = false;
+            state.error = true;
+        });
+        builder.addCase(deletePet.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(deletePet.fulfilled, (state, action) => {
+            state.isFetching = false;
+            state.pets = state.pets.filter(pet => pet.id !== action.payload);
+        });
+        builder.addCase(deletePet.rejected, (state) => {
+            state.isFetching = false;
+            state.error = true;
+        });
+        builder.addCase(updatePetStatus.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(updatePetStatus.fulfilled, (state, action) => {
+            state.isFetching = false;
+            const index = state.pets.findIndex(pet => pet.id === action.payload.id);
+            if (index !== -1) {
+                state.pets[index].status = action.payload.status;
+            }
+        });
+        builder.addCase(updatePetStatus.rejected, (state) => {
+            state.isFetching = false;
+            state.error = true;
+        });
+        builder.addCase(updatePet.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(updatePet.fulfilled, (state, action) => {
+            state.isFetching = false;
+            state.pets = state.pets.map(pet => 
+                pet.id === action.payload.petId 
+                    ? {...pet, ...action.payload.updatedData} 
+                    : pet
+            );
+        });
+        builder.addCase(updatePet.rejected, (state) => {
             state.isFetching = false;
             state.error = true;
         });

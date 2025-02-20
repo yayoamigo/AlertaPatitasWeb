@@ -102,3 +102,39 @@
     display: none;
   }
 }
+
+.statusBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.disponible {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.adoptado {
+  background-color: #F44336;
+  color: white;
+}
+
+.adoptButton {
+  background-color: var(--btn);
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.adoptButton:hover {
+  background-color: #1a7bb9;
+}

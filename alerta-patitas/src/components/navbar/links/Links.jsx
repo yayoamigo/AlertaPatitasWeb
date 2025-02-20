@@ -38,7 +38,7 @@ const Links = ({ session, admin }) => {
       <DrawerClose asChild key={link.title}>
         <Link
           to={link.path}
-          className={`${styles.menuLinks} ${location.pathname === link.path && styles.active}`}
+          className={`${styles.navbar__link} ${location.pathname === link.path ? styles['navbar__link-active'] : ''}`}
         >
           {link.title}
         </Link>
@@ -46,24 +46,22 @@ const Links = ({ session, admin }) => {
     ));
   };
 
-  return (
-    <div className={styles.container}>
-      {isMobile ? (
-        <>
-          <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right" className="dark">
-            <DrawerTrigger asChild>
-              <MenuIcon className="cursor-pointer" size={40} onClick={() => setDrawerOpen(true)} />
-            </DrawerTrigger>
-            <DrawerContent className="dark">
-              {renderDrawerLinks()}
-            </DrawerContent>
-          </Drawer>
-        </>
-      ) : (
-        <div className={styles.links}>
-          {renderLinks()}
+  return isMobile ? (
+    <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+      <DrawerTrigger asChild>
+        <button className={styles.navbar__menu_button}>
+          <MenuIcon size={32} />
+        </button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <div className={styles.navbar__drawer}>
+          {renderDrawerLinks()}
         </div>
-      )}
+      </DrawerContent>
+    </Drawer>
+  ) : (
+    <div className={styles.navbar__menu}>
+      {renderLinks()}
     </div>
   );
 };

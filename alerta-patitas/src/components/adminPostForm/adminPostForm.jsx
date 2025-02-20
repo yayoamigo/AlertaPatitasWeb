@@ -6,7 +6,60 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } f
 import app from "../../utils/firebase";
 import { fetchPets } from '../../redux/adminPets';
 
-const AdminPostForm = ({ pet = {} }) => {
+const resizeImage = (file) => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set desired dimensions to 400x300
+        canvas.width = 400;
+        canvas.height = 300;
+        
+        // Calculate dimensions to maintain aspect ratio
+        let drawWidth = 400;
+        let drawHeight = 300;
+        let x = 0;
+        let y = 0;
+
+        const aspectRatio = img.width / img.height;
+        const canvasRatio = canvas.width / canvas.height;
+
+        if (aspectRatio > canvasRatio) {
+          // Image is wider than canvas ratio
+          drawHeight = canvas.height;
+          drawWidth = drawHeight * aspectRatio;
+          x = (canvas.width - drawWidth) / 2;
+        } else {
+          // Image is taller than canvas ratio
+          drawWidth = canvas.width;
+          drawHeight = drawWidth / aspectRatio;
+          y = (canvas.height - drawHeight) / 2;
+        }
+        
+        // Draw and resize image on canvas
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, x, y, drawWidth, drawHeight);
+        
+        // Convert to blob
+        canvas.toBlob((blob) => {
+          resolve(new File([blob], file.name, {
+            type: 'image/jpeg',
+            lastModified: Date.now(),
+          }));
+        }, 'image/jpeg', 0.8); // 0.8 is the quality
+      };
+    };
+  });
+};
+
+const AdminPostForm = ({ pet = {}, isEditing, onCancel, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: pet.name || '',
     status: pet.status || '',
@@ -46,6 +99,23 @@ const AdminPostForm = ({ pet = {} }) => {
     URL.revokeObjectURL(filePreview); // Revoke the old object URL to free memory
   };
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const resizedImage = await resizeImage(file);
+        setFile(resizedImage);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setFilePreview(reader.result);
+        };
+        reader.readAsDataURL(resizedImage);
+      } catch (error) {
+        console.error("Error resizing image:", error);
+      }
+    }
+  };
+
   const validate = () => {
     const newErrors = {};
 
@@ -66,66 +136,68 @@ const AdminPostForm = ({ pet = {} }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      try {
-        const fileName = new Date().getTime() + file.name;
-        const storage = getStorage(app);
-        const storageRefInstance = storageRef(storage, fileName);
-        const uploadTask = uploadBytesResumable(storageRefInstance, file);
+    
+    if (!validate()) return;
 
-        uploadTask.on(
-          'state_changed',
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-            switch (snapshot.state) {
-              case "paused":
-                console.log("Upload is paused");
-                break;
-              case "running":
-                console.log("Upload is running");
-                break;
-              default:
-            }
-          },
-          (error) => {
-            alert('Failed to upload image: ' + error.message);
-          },
-          async () => {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            const updatedFormData = { ...formData, photo: downloadURL };
-            await dispatch(postPets(updatedFormData)).unwrap();
-            alert('Form submitted successfully!');
+    try {
+      const fileName = new Date().getTime() + file.name;
+      const storage = getStorage(app);
+      const storageRefInstance = storageRef(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRefInstance, file);
 
-            dispatch(fetchPets());
-
-
-            // Reset form data and file input
-            setFormData({
-              shelterId: 1,
-              name: '',
-              status: '',
-              type: '',
-              size: '',
-              city: '',
-              activityLevel: '',
-              weight: '', // Reset weight to an empty string
-              age: '',
-              story: '',
-              photo: ''
-            });
-            setFile(null);
-            setFilePreview(null);
-            URL.revokeObjectURL(filePreview); // Revoke the old object URL to free memory
-            if (fileInputRef.current) {
-              fileInputRef.current.value = ''; // Reset file input
-            }
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
           }
-        );
-      } catch (error) {
-        alert('Failed to submit the form: ' + error.message);
-      }
+        },
+        (error) => {
+          alert('Failed to upload image: ' + error.message);
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          await dispatch(postPets({ ...formData, photo: downloadURL })).unwrap();
+          await dispatch(fetchPets()).unwrap();
+          
+          // Reset form
+          setFormData({
+            name: '',
+            status: '',
+            type: '',
+            size: '',
+            city: '',
+            activityLevel: '',
+            weight: '',
+            age: '',
+            story: '',
+            shelterId: 1,
+            photo: '',
+          });
+          setFile(null);
+          setFilePreview(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+          }
+          
+          // Show success message or handle completion
+          if (onSuccess) {
+            onSuccess();
+          }
+        }
+      );
+    } catch (error) {
+      console.error('Error:', error);
+      setErrors({ submit: 'Error uploading pet information' });
     }
   };
 
@@ -217,7 +289,7 @@ const AdminPostForm = ({ pet = {} }) => {
       <input
         type="file"
         name="photo"
-        onChange={handleFileChange}
+        onChange={handleImageChange}
         accept="image/*"
         ref={fileInputRef} // Attach the ref to the file input
       />

@@ -5,6 +5,7 @@ import { useMediaQuery } from "../../hooks/use-media-query";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets } from "../../redux/adminPets";
+import Loading from "../../components/ui/loading";
 
 const AdminPage = () => {
   const isDesktop = useMediaQuery('(min-width: 1115px)');
@@ -32,29 +33,37 @@ const AdminPage = () => {
     photo: '',
   };
 
+  if (!isDesktop) {
+    return (
+      <div className={styles.admin__mobile_notice}>
+        <h1>Por favor, utiliza una pantalla más grande</h1>
+      </div>
+    );
+  }
+
   return (
-    isDesktop ? (
-      <div className={styles.container}>
-        <div className={styles.row}>
-          <div className={styles.col}>
-            { !isFetching && !error && pets && pets.length > 0 ? (
+    <div className={styles.admin}>
+      <div className={styles.admin__container}>
+        <div className={styles.admin__row}>
+          <div className={styles.admin__column}>
+            {isFetching ? (
+              <Loading />
+            ) : error ? (
+              <p className={styles.admin__error}>Error al cargar las mascotas</p>
+            ) : pets && Array.isArray(pets) && pets.length > 0 ? (
               pets.map((pet) => (
-                <AdminPosts pet={pet} key={pet.id} />
+                <AdminPosts key={pet.id} pet={pet} />
               ))
             ) : (
-              <p>No pets available</p>
+              <p className={styles.admin__empty}>No hay mascotas disponibles</p>
             )}
           </div>
-          <div className={styles.col2}>
-            <AdminPostForm pet={examplePet} />
+          <div className={styles['admin__column-right']}>
+            <AdminPostForm />
           </div>
         </div>
       </div>
-    ) : (
-      <div className={styles.aviso}>
-        <h1>Por favor, utiliza una pantalla más grande</h1>
-      </div>
-    )
+    </div>
   );
 };  
 

@@ -1,31 +1,49 @@
-
 import styles from "./contacto.module.css";
 
-
 const ContactPage = () => {
-
-
   return (
-    <div className={styles.wrapper}>
-    <div className={styles.container}>
-    <h1 className="text-2xl sm:text-5xl font-bold text-white rounded-xl p-10  opacity-6"> Escribenos y creamos tu cuenta</h1>
-      <div className={styles.formContainer}>
-        <form action="" className={styles.form}>
-          <input className={styles.inputs} type="text" placeholder="Nombre del refugio" />
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Celular" />
-          <input type="text" placeholder="Pagina web" />
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Message"
-          ></textarea>
-          <button>Enviar Solicitud</button>
-        </form>
+    <div className={styles.contact}>
+      <div className={styles.contact__container}>
+        <h1 className={styles.contact__title}>
+          Escribenos y creamos tu cuenta
+        </h1>
+        <div className={styles.contact__form_container}>
+          <form className={styles.contact__form}>
+            <input 
+              type="text" 
+              placeholder="Nombre del refugio" 
+              required
+              className={styles.contact__input}
+            />
+            <input 
+              type="email" 
+              placeholder="Email" 
+              required
+              className={styles.contact__input}
+            />
+            <input 
+              type="tel" 
+              placeholder="Celular" 
+              required
+              className={styles.contact__input}
+            />
+            <input 
+              type="url" 
+              placeholder="Pagina web"
+              className={styles.contact__input}
+            />
+            <textarea
+              rows="5"
+              placeholder="Mensaje"
+              required
+              className={`${styles.contact__input} ${styles.contact__textarea}`}
+            ></textarea>
+            <button type="submit" className={styles.contact__button}>
+              Enviar Solicitud
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

@@ -1,47 +1,89 @@
-.card-container {
-    max-width: 500px;
-    margin: auto;
-    position: relative;
-  }
-  
-  .card {
-    position: relative;
-    z-index: 1;
-    border-radius: 22px;
-    padding: 1rem;
-    padding-top: 0; 
-    background-color: white;
-    background-clip: padding-box; 
-    color: black;
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; 
-    cursor: pointer;
-  }
-  
-  .card::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: -1;
-    background: linear-gradient(135deg, #aec2f8, #baece7 71%, #92c9ed);
-    border-radius: 27px; 
-    pointer-events: none; 
-    transition: opacity 0.3s ease-in-out; 
-  }
-  
-  .card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05); 
-  }
-  
-  .card:hover::before {
-    opacity: 0.9; 
-  }
-  
-  .card img {
-    border-radius: 22px;
-    height: 250px;
-  }
+/* Block: card */
+.card {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  aspect-ratio: 3/4; /* Maintain consistent aspect ratio */
+}
+
+.card__container {
+  position: relative;
+  z-index: 1;
+  border-radius: 22px;
+  padding: 1rem;
+  padding-top: 0;
+  background-color: white;
+  background-clip: padding-box;
+  color: black;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__container::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(135deg, #aec2f8, #baece7 71%, #92c9ed);
+  border-radius: 27px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card__container:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.card__container:hover::before {
+  opacity: 0.9;
+}
+
+.card__image-container {
+  width: 100%;
+  height: 250px; /* Fixed height */
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 1rem;
+  background-color: black;
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: auto; /* Push tag to bottom */
+}
   
