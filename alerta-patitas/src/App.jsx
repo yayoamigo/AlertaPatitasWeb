@@ -1,4 +1,3 @@
-
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/navbar/navbar'
@@ -10,12 +9,14 @@ import MascotasPage from './pages/mascotas/mascotasPage'
 import NosotrosPage from './pages/nosotros/nosotrosPage'
 import ProcesoPage from './pages/proceso/procesoPage'
 import MascotaPage from './pages/mascotas/slug/mascotaPage'
+import ScrollToTop from './components/scrollToTop/ScrollToTop'
 
 
 function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
       <Navbar />
         <Routes>
           <Route path="/" element={<Home /> } />

@@ -1,0 +1,124 @@
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.modal__close:hover {
+  color: #000;
+}
+
+.modal__title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--black);
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal__input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal__input_group label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.modal__input_group input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.modal__input_group input:focus {
+  border-color: var(--btn);
+  outline: none;
+}
+
+.modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.modal__button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal__button {
+  background-color: var(--btn);
+  color: white;
+}
+
+.modal__button:hover {
+  background-color: #1a7bb9;
+}
+
+.modal__button--secondary {
+  background-color: transparent;
+  color: var(--btn);
+  border: 1px solid var(--btn);
+}
+
+.modal__button--secondary:hover {
+  background-color: #f0f9ff;
+}
+
+.modal__error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #fef2f2;
+  border-radius: 4px;
+} 

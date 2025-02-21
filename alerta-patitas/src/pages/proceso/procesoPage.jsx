@@ -1,9 +1,14 @@
 import { motion } from 'framer-motion';
 import { Smartphone, User, Search, Phone, Heart } from 'lucide-react';
 import styles from './proceso.module.css';
+import { useEffect } from 'react';
 
 
 const ProcesoPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className={styles.wrapper}>
       <div className={styles.requirementsHeadlines}>

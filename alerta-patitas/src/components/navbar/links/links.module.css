@@ -38,3 +38,58 @@
   background-color: #3c348c;
 }
 
+.navbar__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+}
+
+.navbar__menu_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--black);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.navbar__menu_button:hover {
+  color: var(--btn);
+}
+
+.navbar__drawer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar__link {
+  display: inline-block;
+  position: relative;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.2s ease-out;
+}
+
+.navbar__link:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.navbar__link-active {
+  background-color: var(--accent);
+  color: white;
+}
+

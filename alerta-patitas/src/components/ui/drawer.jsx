@@ -1,27 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import * as React from "react"
-import { Drawer as DrawerPrimitive } from "vaul"
+import * as DrawerPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import styles from "./drawer.module.css"
 
 import { cn } from "../../lib/utils"
 
 const DrawerContext = React.createContext({})
 
-const Drawer = ({
-  shouldScaleBackground = true,
-  ...props
-}) => (
-  <DrawerContext.Provider value={{direction: props.direction}}>
-  <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
-  </DrawerContext.Provider>
-)
-Drawer.displayName = "Drawer"
+const Drawer = DrawerPrimitive.Root
 
 const DrawerTrigger = DrawerPrimitive.Trigger
 
-const DrawerPortal = DrawerPrimitive.Portal
-
 const DrawerClose = DrawerPrimitive.Close
+
+const DrawerPortal = DrawerPrimitive.Portal
 
 const DrawerOverlay = React.forwardRef(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
@@ -31,26 +25,17 @@ const DrawerOverlay = React.forwardRef(({ className, ...props }, ref) => (
 ))
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 
-const DrawerContent = React.forwardRef(({ className, children, ...props }, ref) =>{ 
-  const { direction } = React.useContext(DrawerContext)
-  return (
-  <DrawerPortal>
-    <DrawerOverlay />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed mt-24  z-50 flex h-auto flex-col bg-white ",
-        (!direction || direction === "bottom") && "inset-x-0 bottom-0 mt-24 ",
-        direction === "right" && "top-0 right-0 w-screen max-w-60 h-full",
-      )}
-      {...props}>
-        {(!direction || direction === "bottom" &&
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
-        )}
+const DrawerContent = React.forwardRef(({ className, children, ...props }, ref) => (
+  <DrawerPrimitive.Portal>
+    <DrawerPrimitive.Overlay className={styles.drawer__overlay} />
+    <DrawerPrimitive.Content ref={ref} className={styles.drawer__content} {...props}>
       {children}
+      <DrawerPrimitive.Close className={styles.drawer__close}>
+        <X size={24} />
+      </DrawerPrimitive.Close>
     </DrawerPrimitive.Content>
-  </DrawerPortal>
-)}) 
+  </DrawerPrimitive.Portal>
+))
 DrawerContent.displayName = "DrawerContent"
 
 const DrawerHeader = ({
