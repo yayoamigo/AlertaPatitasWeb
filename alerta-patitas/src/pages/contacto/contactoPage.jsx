@@ -1,10 +1,8 @@
 import styles from "./contacto.module.css";
-import { useMediaQuery } from "../../hooks/use-media-query";
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
-  const isDesktop = useMediaQuery("(min-width: 1069px)");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
@@ -66,14 +64,6 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-
-  if (!isDesktop) {
-    return (
-      <div className={styles.contact__mobile}>
-        <h1>Por favor, utiliza una pantalla más grande</h1>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.contact}>
