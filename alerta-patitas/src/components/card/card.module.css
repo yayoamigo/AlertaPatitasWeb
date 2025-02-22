@@ -1,10 +1,10 @@
-/* Block: card */
+
 .card {
   max-width: 500px;
   width: 100%;
   margin: auto;
   position: relative;
-  aspect-ratio: 3/4; /* Maintain consistent aspect ratio */
+  aspect-ratio: 3/4; 
 }
 
 .card__container {
@@ -48,7 +48,7 @@
 
 .card__image-container {
   width: 100%;
-  height: 250px; /* Fixed height */
+  height: 250px; 
   position: relative;
   overflow: hidden;
   border-radius: 22px;
@@ -84,6 +84,6 @@
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: bold;
-  margin-top: auto; /* Push tag to bottom */
+  margin-top: auto; 
 }
   

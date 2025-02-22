@@ -29,8 +29,8 @@ const ContactPage = () => {
 
     try {
       const result = await emailjs.send(
-        'service_9od5xgw', // Replace with your EmailJS service ID
-        'template_8ukagq6', // Replace with your EmailJS template ID
+        'service_9od5xgw', 
+        'template_8ukagq6',
         {
           to_email: 'yayopython@gmail.com',
           from_name: formData.shelter_name,
@@ -39,7 +39,7 @@ const ContactPage = () => {
           website: formData.website,
           message: formData.message,
         },
-        'XEiPPFCqsJ-sN9bo7' // Replace with your EmailJS public key
+        'XEiPPFCqsJ-sN9bo7' 
       );
 
       if (result.status === 200) {

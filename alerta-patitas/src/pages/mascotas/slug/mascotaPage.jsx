@@ -3,16 +3,15 @@ import { useSelector } from 'react-redux';
 import styles from './mascota.module.css';
 
 const MascotaPage = () => {
-  // Get the id from URL params
+  
   const { slug } = useParams();
   
-  // Get pets from Redux state
+  
   const { pets } = useSelector((state) => state.adoptionPets);
   
-  // Find the specific pet based on the slug/id
+  
   const pet = pets.find((p) => p.id === slug);
 
-  // Show loading or error state if pet not found
   if (!pet) {
     return (
       <div className={styles.wrapper}>

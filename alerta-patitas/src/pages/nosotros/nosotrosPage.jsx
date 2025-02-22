@@ -35,15 +35,15 @@ const NosotrosPage = () => {
           </p>
           <div className={styles.boxes}>
             <div className={styles.box}>
-              <h1>500+</h1>
+              <h1>50+</h1>
               <p>Mascotas adoptadas</p>
             </div>
             <div className={styles.box}>
-              <h1>300+</h1>
+              <h1>30+</h1>
               <p>Mascotas encontradas</p>
             </div>
             <div className={styles.box}>
-              <h1>100+</h1>
+              <h1>30+</h1>
               <p>Voluntarios activos</p>
             </div>
           </div>

@@ -42,7 +42,7 @@ const MascotasPage = () => {
   // Filter and sort pets
   const filteredPets = pets?.filter(pet => {
     const matchesSearch = pet.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         pet.type?.toLowerCase().includes(searchTerm.toLowerCase());
+       pet.type?.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesFilters = (
       (!filters.type || pet.type?.toLowerCase() === filters.type.toLowerCase()) &&

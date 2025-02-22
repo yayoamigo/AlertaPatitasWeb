@@ -2,7 +2,7 @@ import styles from "./admin.module.css";
 import AdminPosts from "../../components/adminPosts/adminPosts";
 import AdminPostForm from "../../components/adminPostForm/adminPostForm";
 import { useMediaQuery } from "../../hooks/use-media-query";
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets } from "../../redux/adminPets";
 import Loading from "../../components/ui/loading";
@@ -17,21 +17,20 @@ const AdminPage = () => {
     dispatch(fetchPets());
   }, [dispatch]);
 
-  console.log(pets);
 
-  const examplePet = {
-    id: 1,
-    name: '',
-    status: '',
-    type: '',
-    size: '',
-    city: '',
-    activityLevel: '',
-    weight: 0,
-    age: '',
-    story: '',
-    photo: '',
-  };
+  // const examplePet = {
+  //   id: 1,
+  //   name: '',
+  //   status: '',
+  //   type: '',
+  //   size: '',
+  //   city: '',
+  //   activityLevel: '',
+  //   weight: 0,
+  //   age: '',
+  //   story: '',
+  //   photo: '',
+  // };
 
   if (!isDesktop) {
     return (

@@ -18,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle scroll effect
+  
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector('nav');
@@ -30,23 +30,26 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle admin navigation only when admin state changes
+ 
   useEffect(() => {
-    // Only handle navigation for admin routes
-    if (admin && location.pathname !== '/admin') {
-      navigate('/admin');
-    } else if (!admin && !session && location.pathname === '/admin') {
+     if (!admin && !session && location.pathname === '/admin') {
       navigate('/');
     }
-  }, [admin, session]);
+  }, [admin, session, navigate, location.pathname]);
+
+  const handleLogin = () => {
+    setSession(true);
+    setAdmin(true);
+  };
 
   const handleClick = () => {
     if (session) {
-      // Handle logout
+
       setSession(false);
       setAdmin(false);
+      navigate('/');
     } else {
-      // Show login modal
+
       setIsLoginModalOpen(true);
     }
   };
@@ -76,6 +79,7 @@ const Navbar = () => {
       <LoginModal 
         isOpen={isLoginModalOpen} 
         onClose={() => setIsLoginModalOpen(false)}
+        onLogin={handleLogin}
       />
     </>
   );

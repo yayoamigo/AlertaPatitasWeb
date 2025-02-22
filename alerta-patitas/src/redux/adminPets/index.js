@@ -12,7 +12,6 @@ const initialState = {
 export const fetchPets = createAsyncThunk('adoptionPets/fetchPets', async () => {
     const response = await publicRequestAdoptionPets.get('.json');
     const data = response.data;
-    // Convert Firebase object to array and filter out null values
     return data ? Object.entries(data)
       .map(([id, pet]) => ({ ...pet, id }))
       .filter(pet => pet !== null) : [];
