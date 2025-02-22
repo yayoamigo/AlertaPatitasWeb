@@ -11,7 +11,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
     e.preventDefault();
     
     
-    if (email === 'admin@example.com' && password === 'admin123') {
+    if (email === 'yayonloco@gmail.com' && password === 'admin123') {
       onLogin();
       onClose();
       setError('');
@@ -19,12 +19,12 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       setEmail('');
       setPassword('');
     } else {
-      setError('Credenciales inválidas. Use admin@example.com / admin123');
+      setError('Credenciales inválidas');
     }
   };
 
   const handleResetPassword = () => {
-    setError('Para este demo, use: admin@example.com / admin123');
+    setError('Credenciales inválidas');
   };
 
   if (!isOpen) return null;
