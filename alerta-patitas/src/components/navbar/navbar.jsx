@@ -32,7 +32,7 @@ const Navbar = () => {
 
  
   useEffect(() => {
-     if (!admin && !session && location.pathname === '/admin') {
+    if (!admin && !session && (location.pathname === '/admin' || location.pathname === '/mascotas')) {
       navigate('/');
     }
   }, [admin, session, navigate, location.pathname]);
@@ -44,12 +44,10 @@ const Navbar = () => {
 
   const handleClick = () => {
     if (session) {
-
       setSession(false);
       setAdmin(false);
       navigate('/');
     } else {
-
       setIsLoginModalOpen(true);
     }
   };

@@ -10,7 +10,6 @@ import { useState } from "react";
 
 const links = [
   { title: "Inicio", path: "/" },
-  { title: "Mascotas", path: "/mascotas" },
   { title: "Soy Refugio", path: "/contacto" },
   { title: "Nosotros", path: "/nosotros" },
   { title: "Proceso", path: "/proceso" },
